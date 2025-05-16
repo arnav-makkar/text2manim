@@ -255,7 +255,8 @@ Output only the resulting JSON schema:
         client = Groq(api_key=GROQ_API_KEY)
         chat_completion = client.chat.completions.create(
             messages=[{"role": "user", "content": prompt}],
-            model="gemma2-9b-it",
+            # model="gemma2-9b-it",
+            model="meta-llama/llama-4-scout-17b-16e-instruct",
             stream=False,
         )
         json_output = chat_completion.choices[0].message.content
@@ -275,9 +276,11 @@ Output only the resulting JSON schema:
     return json_schema
 
 if __name__ == "__main__":
-    description = "draw a circle of radius 2 cm and two tangent of length 3 cm from a single point P."
+    # description = "draw a circle of radius 2 cm and two tangent of length 3 cm from a single point P."
+    # description = "Draw a regular hexagon inscribed in a circle of radius 4 cm."
+
+    description = "inscribe a square of in a circle of radius 3 cm. draw two tangents of length 5 cm each from a point P outside the circle"
     # description = "draw a circle of radius 2 cm a tangent of length 3 cm from a single point P."
-    # description = "Draw an equilateral triangle with side 6 and inscribe a circle."
     try:
         print("Processing:")
         json_schema = parse_geometric_description(description)
